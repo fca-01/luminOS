@@ -1,54 +1,50 @@
 "use client";
 
 import PageLoading from "@/components/motion-primitives/page-loading";
-import { FloatingDock } from "@/components/ui/floating-dock";
-import { IconBuildingStore, IconFolder, IconHome, IconSettings } from "@tabler/icons-react";
+import Dock from "./components/dock/Dock";
+import { IconFolder } from "@tabler/icons-react";
+import { Reorder } from "motion/react";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 //import Image from "next/image";
 
+const initialItems = ["Computer", "Documents", "Pictures", "Music", "Videos", "Downloads"];
+
 export default function Desktop() {
-  const links = [
-    {
-      title: "Home",
-      icon: (
-        <IconHome className="w-20 h-20"/>
-      ),
-      href: "#",
-    },
-    {
-      title: "Folder",
-      icon: (
-        <IconFolder className="w-20 h-20"/>
-      ),
-      href: "#",
-    },
-    {
-      title: "Apps",
-      icon: (
-        <IconBuildingStore className="w-20 h-20"/>
-      ),
-      href: "#",
-    },
-    {
-      title: "Configs",
-      icon: (
-        <IconSettings className="w-20 h-20"/>
-      ),
-      href: "#",
-    },
-  ];
+  const [items, setItems] = useState(initialItems);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const adicionarParametro = ( target: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("folder", target.toLowerCase()); // atualiza ou cria o parâmetro
+
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+  
   return (
-    <div className="flex items-center justify-center h-[35rem] w-full">
+    <div className="flex items-center justify-center h-screen w-screen">
       <PageLoading />
-      {/* <Image src={"/wallpapers/wallpaper1.jpg"} width={4000} height={4000} alt="" className="fixed top-0 -z-10 opacity-50" quality={100} /> */}
-      <div className="fixed bottom-5">
-        <FloatingDock
-          mobileClassName="translate-y-20" // only for demo, remove for production
-          items={links}
-        />
+      <Dock />
+
+      <div className="flex items-start justify-start w-full h-full p-10">
+
+        <div className="flex gap-5 w-full h-full">
+          <Reorder.Group axis="y" onReorder={setItems} values={items}>
+            {items.map((item) => (
+              <Reorder.Item value={item} id={item} key={item}>
+                <button 
+                  onClick={() => adicionarParametro(item)}
+                  className="w-24 h-fit p-2.5 rounded-lg hover:bg-neutral-900 border border-transparent hover:border-neutral-700 flex flex-col items-center justify-center mb-5 gap-2">
+                    <IconFolder />
+                    <span className="text-sm">{item}</span>
+                </button>
+              </Reorder.Item>
+            ))}
+          </Reorder.Group>
+        </div>
       </div>
-      <div>
-        <IconFolder />
-      </div>
+
     </div>
   );
 }
