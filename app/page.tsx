@@ -1,37 +1,13 @@
 'use client';
 
-import { FloatingDock } from "@/components/ui/floating-dock";
-import { IconHome, IconNewSection, IconTerminal2 } from "@tabler/icons-react";
+
 import { MultiStepLoader as Loader } from "@/components/ui/loader";
 import { useState } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Login } from "@/components/login/login";
-import PageLoading from "@/components/motion-primitives/page-loading";
+
 
 export default function Home() {
-  const links = [
-   {
-      title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-    {
-      title: "Products",
-      icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-    {
-      title: "Components",
-      icon: (
-        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-  ];
 
   const loadingStates = [
     { text: "Welcome!" },
@@ -60,10 +36,12 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [logoLoading, setLogoLoading] = useState(true);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setTime = setTimeout(() => {
     setLoading(false);
   }, time);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setLogoTime = setTimeout(() => {
     setLogoLoading(false);
   }, logoTime);
