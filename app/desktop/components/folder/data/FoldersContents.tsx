@@ -1,4 +1,5 @@
 
+
 export const images = [
   {
     description: "",
@@ -32,3 +33,11 @@ export const videos = [
     ctaLink: "https://ui.aceternity.com/templates",
   },
 ];
+
+export function Kanban() {
+  return (
+    <div>
+
+    </div>
+  )
+}

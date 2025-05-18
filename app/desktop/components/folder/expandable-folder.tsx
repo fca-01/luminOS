@@ -5,7 +5,7 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 //import Folder from "./Folder";
-import { IconFolder } from "@tabler/icons-react";
+
 import dynamic from "next/dynamic";
 import Loading from "@/components/loading";
 
@@ -140,7 +140,8 @@ export function ExpandableFolder({ folder }: Props) {
             className="p-1.5 flex flex-col justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-600 rounded-none cursor-pointer"
           >
             <div className="flex flex-col gap-2 items-center justify-center ">
-              <IconFolder className="w-8 h-8"/>
+
+              {folder.icon}
               {/* folder list Title */}
               <motion.h3
                 className="font-medium text-neutral-800 dark:text-neutral-200 text-center text-sm"
