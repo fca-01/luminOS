@@ -1,29 +1,25 @@
-
 "use client";
 
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-//import Folder from "./Folder";
-import { IconFolder } from "@tabler/icons-react";
-import dynamic from "next/dynamic";
-import Loading from "@/components/loading";
-
-const DynamicFolder = dynamic(() => import("./Folder"), {
-  loading: () => <Loading />,
-});
+import Image from "next/image";
 
 interface Props {
-  folder: FolderProps;
-}
-interface FolderProps {
-  title: string;
-  content: React.ReactNode
-  icon: React.ReactNode | React.ReactSVGElement;
+  type: "videos" | "images" | "folders";
+  content: Content[];
 }
 
-export function ExpandableFolder({ folder }: Props) {
-  const [active, setActive] = useState<(typeof folder) | string | boolean | null>(
+interface Content {
+  description: string;
+  title: string;
+  src: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+export function DisplayFolderContent({ type, content }: Props) {
+  const [active, setActive] = useState<(typeof content)[number] | boolean | null>(
     null
   );
   const ref = useRef<HTMLDivElement>(null);
@@ -50,7 +46,6 @@ export function ExpandableFolder({ folder }: Props) {
 
   return (
     <>
-      {/* background */}
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
@@ -61,11 +56,9 @@ export function ExpandableFolder({ folder }: Props) {
           />
         )}
       </AnimatePresence>
-
-      {/* background */}
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 w-screen grid place-items-center z-[100]">
+          <div className="fixed inset-0  grid place-items-center z-[100]">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -81,52 +74,57 @@ export function ExpandableFolder({ folder }: Props) {
                   duration: 0.05,
                 },
               }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-none h-6 w-6"
               onClick={() => setActive(null)}
             >
               <CloseIcon />
             </motion.button>
-            {/* modal container */}
+
+            {/* modal content */}
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className=" h-fit w-fit flex flex-col bg-white dark:bg-neutral-900 overflow-hidden"
+              className="min-w-96 h-fit  flex flex-col bg-white dark:bg-neutral-900 rounded-none overflow-hidden"
             >
-              {/* modal Image */}
               <motion.div layoutId={`image-${active.title}-${id}`}>
-                
+                {type === "videos" ? (
+                  <video
+                    width={500}
+                    height={2000}
+                    src={active.src}
+                    loop
+                    autoPlay
+                    className="w-full h-full"
+                  />
+                ) : (
+                  <Image
+                    src={active.src}
+                    alt={active.title}
+                    width={500}
+                    height={2000}
+                    className="w-full h-full"
+                  />
+                )}
+
               </motion.div>
 
               <div>
-                <div className="flex justify-between items-start p-0">
+                <div className="flex justify-between items-start p-4">
                   <div className="">
-                    {/* modal Title */}
-                    {/* <motion.h3
+                    <motion.h3
                       layoutId={`title-${active.title}-${id}`}
                       className="font-bold text-neutral-700 dark:text-neutral-200"
                     >
                       {active.title}
-                    </motion.h3> */}
-
-                    {/* modal content */}
+                    </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.content}-${id}`}
+                      layoutId={`description-${active.description}-${id}`}
                       className="text-neutral-600 dark:text-neutral-400"
                     >
-                      <DynamicFolder title={active.title} content={active.content} />
+                      {active.description}
                     </motion.p>
                   </div>
-                  {/* modal action Button */}
-                 {/*  <motion.a
-                    layoutId={`button-${active.title}-${id}`}
-                    href={active.ctaLink}
-                    target="_blank"
-                    className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white"
-                  >
-                    {active.ctaText}
-                  </motion.a> */}
                 </div>
-                
               </div>
             </motion.div>
           </div>
@@ -134,22 +132,41 @@ export function ExpandableFolder({ folder }: Props) {
       </AnimatePresence>
 
       {/* folder list */}
-      <ul className="flex flex-col w-32 h-fit gap-4">
+      <ul className="max-w-2xl mx-auto w-full gap-4">
+        {content.map((card) => (
           <motion.div
-            onClick={() => setActive(folder)}
-            className="p-1.5 flex flex-col justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-600 rounded-none cursor-pointer"
+            layoutId={`card-${card.title}-${id}`}
+            key={`card-${card.title}-${id}`}
+            onClick={() => setActive(card)}
+            className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-none cursor-pointer"
           >
-            <div className="flex flex-col gap-2 items-center justify-center ">
-              <IconFolder className="w-8 h-8"/>
-              {/* folder list Title */}
-              <motion.h3
-                className="font-medium text-neutral-800 dark:text-neutral-200 text-center text-sm"
-              >
-                {folder.title}
-              </motion.h3>
-            </div>
-          </motion.div>
+            <div className="flex gap-4 flex-col md:flex-row w-52">
+              <motion.div layoutId={`image-${card.title}-${id}`}>
 
+              </motion.div>
+              <div className="">
+                <motion.h3
+                  layoutId={`title-${card.title}-${id}`}
+                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left"
+                >
+                  {card.title}
+                </motion.h3>
+                <motion.p
+                  layoutId={`description-${card.description}-${id}`}
+                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left"
+                >
+                  {card.description}
+                </motion.p>
+              </div>
+            </div>
+            <motion.button
+              layoutId={`button-${card.title}-${id}`}
+              className="px-4 py-2 text-sm rounded-none font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
+            >
+              {card.ctaText}
+            </motion.button>
+          </motion.div>
+        ))}
       </ul>
     </>
   );

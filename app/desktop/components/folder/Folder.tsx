@@ -8,7 +8,7 @@ interface FolderProps {
 export default function Folder({ title, content }: FolderProps) {
 
   return (
-    <div className="flex flex-col items-center justify-start min-w-[600px] min-h-[600px] border border-[#41797D] relative">
+    <div className="flex flex-col items-start justify-start min-w-[600px] min-h-[600px] border border-[#41797D] relative">
 
       {/* Header */}
       <div className="bg-[#41797D] w-full pl-5 text-start text-white">
@@ -42,7 +42,7 @@ export default function Folder({ title, content }: FolderProps) {
       </div>
 
       {/* Content */}
-      <div className="min-h-96 flex justify-center items-center">
+      <div className="min-h-96 flex justify-start items-start">
         <span>{content}</span>
       </div>
 
