@@ -5,6 +5,7 @@ import { useState } from "react";
 import { bootingStages } from "./bootingStages";
 import { MultiStepLoader as Loader } from "@/components/ui/loader";
 import { SparklesCore } from "../ui/sparkles";
+import { OS_CONFIG } from "@/os-config";
 
 export default function Booting() {
 
@@ -33,7 +34,7 @@ export default function Booting() {
       <div className={`${!logoLoading && "hidden"} min-h-screen w-screen absolute top-0 bg-black flex flex-col items-center justify-center overflow-hidden z-50 rounded-md`}>
 
         <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
-          SkyOS
+          {OS_CONFIG.name}
         </h1>
 
         <div className="w-[40rem] h-40 relative flex justify-center items-center">
@@ -56,7 +57,6 @@ export default function Booting() {
           {/* Radial Gradient to prevent sharp edges */}
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]" 
           />
-
         </div>  
       </div>
     </>

@@ -113,7 +113,7 @@ export function ExpandableFolder({ folder }: Props) {
                       layoutId={`description-${active.content}-${id}`}
                       className="text-neutral-600 dark:text-neutral-400"
                     >
-                      <DynamicFolder title={active.title} content={active.content} />
+                      <DynamicFolder title={active.title} content={active.content} showHeader/>
                     </motion.p>
                   </div>
                   {/* modal action Button */}
@@ -137,14 +137,14 @@ export function ExpandableFolder({ folder }: Props) {
       <ul className="flex flex-col w-32 h-fit gap-4">
           <motion.div
             onClick={() => setActive(folder)}
-            className="p-1.5 flex flex-col justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-600 rounded-none cursor-pointer"
+            className="p-1.5 flex flex-col justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-900 border border-transparent hover:border-neutral-600 rounded-b-lg cursor-pointer"
           >
-            <div className="flex flex-col gap-2 items-center justify-center ">
+            <div className="flex flex-col gap-2 items-center justify-center text-[#6ba0a4] ">
 
               {folder.icon}
               {/* folder list Title */}
               <motion.h3
-                className="font-medium text-neutral-800 dark:text-neutral-200 text-center text-sm"
+                className="font-medium text-[#96b4a7] text-center text-xs uppercase"
               >
                 {folder.title}
               </motion.h3>
