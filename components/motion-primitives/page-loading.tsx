@@ -36,12 +36,9 @@ const Loading = () => {
           style={{ top: `${i * 20}%` }}
         >
           {i === 2 && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="https://res.cloudinary.com/dl2adjye7/image/upload/v1715757108/logo_platform_v4_oa3b8c.png"
-              alt="Logo"
-              className="h-32 w-32"
-            />
+            <div className='text-4xl'>
+              LuminOS
+            </div>
           )}
         </motion.div>
       ))}
