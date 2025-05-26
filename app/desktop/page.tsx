@@ -11,14 +11,7 @@ import Widget from "./components/widget";
 import Dock2 from "./components/dock/Dock2";
 import NeofetchTerminal from "./components/apps/NeofetchTerminal";
 
-
-
-
-const initialFolders = [{
-  title: "My Computer",
-  icon: <FolderIcon />,
-  content: "BBBBBBBB"
-},
+const initialFolders = [
 {
   title: "Videos",
   icon: <FolderIcon />,
