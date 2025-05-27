@@ -6,5 +6,5 @@ export const OS_CONFIG = {
   homepage: "https://github.com/fca/luminOS",
   license: "MIT",
   repository: "https://github.com/fca/luminOS",
-  keywords: ["desktop", "terminal", "shell"],
+  keywords: ["desktop", "terminal", "shell", "open-source", "operating-system"],
 };

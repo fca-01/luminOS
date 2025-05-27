@@ -12,7 +12,7 @@ export default function Folder({ title, content }: FolderProps) {
     <div className="flex flex-col items-start justify-between min-w-[600px] min-h-[600px] border border-[#41797D] relative overflow-y-auto max-h-[600px]">
 
 
-      <div className=" flex flex-col items-start justify-start ">
+      <div className=" flex flex-col items-start justify-start w-full">
         {/* Header */}
         <div className="bg-[#41797D] w-full pl-5 text-start text-white">
           <span>{title}</span>

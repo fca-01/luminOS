@@ -3,31 +3,45 @@
 export const images = [
   {
     description: "",
-    title: "Cat",
-    src: "/cat.jpeg",
+    title: "gun",
+    src: "/images/gun1.jpg",
     ctaText: "Open",
-    ctaLink: "https://ui.aceternity.com/templates",
+    ctaLink: "",
+  },
+  {
+    description: "",
+    title: "office",
+    src: "/images/office.jpg",
+    ctaText: "Open",
+    ctaLink: "",
+  },
+  {
+    description: "",
+    title: "tvs",
+    src: "/images/tvs.jpg",
+    ctaText: "Open",
+    ctaLink: "",
   },
 ];
 
 export const videos = [
   {
     description: "",
-    title: "Cat",
+    title: "City",
+    src: "/videos/city.mp4",
+    ctaText: "Play",
+    ctaLink: "https://ui.aceternity.com/templates",
+  },
+  {
+    description: "",
+    title: "danger",
     src: "/videos/rick.mp4",
     ctaText: "Play",
     ctaLink: "https://ui.aceternity.com/templates",
   },
   {
     description: "",
-    title: "Silly Cat",
-    src: "/videos/rick.mp4",
-    ctaText: "Play",
-    ctaLink: "https://ui.aceternity.com/templates",
-  },
-  {
-    description: "",
-    title: "lol",
+    title: "police",
     src: "/videos/rick.mp4",
     ctaText: "Play",
     ctaLink: "https://ui.aceternity.com/templates",

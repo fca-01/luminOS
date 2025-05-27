@@ -89,12 +89,11 @@ export function DisplayFolderContent({ type, content }: Props) {
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 {type === "videos" ? (
                   <video
-                    width={500}
-                    height={2000}
+                    
                     src={active.src}
                     loop
                     autoPlay
-                    className="w-full h-full"
+                    className="w-full max-h-[90vh]"
                   />
                 ) : (
                   <Image
@@ -102,7 +101,7 @@ export function DisplayFolderContent({ type, content }: Props) {
                     alt={active.title}
                     width={500}
                     height={2000}
-                    className="w-full h-full"
+                    className="w-full max-h-[90vh]"
                   />
                 )}
 
@@ -161,7 +160,7 @@ export function DisplayFolderContent({ type, content }: Props) {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-sm rounded-none font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0"
+              className="px-4 py-2 text-sm rounded-none font-bold bg-[#41797D] text-white hover:opacity-80 mt-4 md:mt-0"
             >
               {card.ctaText}
             </motion.button>

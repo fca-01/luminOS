@@ -38,7 +38,7 @@ type AddCardProps = {
 
 export default function Kanban() {
   return (
-    <div className="h-fit w-full bg-neutral-900 text-neutral-50">
+    <div className="h-fit w-fit bg-neutral-900 text-neutral-50">
       <Board />
     </div>
   );
@@ -48,11 +48,13 @@ const Board = () => {
   const [cards, setCards] = useState<CardType[]>(DEFAULT_CARDS);
 
   return (
-    <div className="flex h-full w-full gap-3 overflow-scroll p-12">
-      <Column title="Backlog" column="backlog" headingColor="text-neutral-500" cards={cards} setCards={setCards} />
-      <Column title="TODO" column="todo" headingColor="text-yellow-200" cards={cards} setCards={setCards} />
-      <Column title="In progress" column="doing" headingColor="text-blue-200" cards={cards} setCards={setCards} />
-      <Column title="Complete" column="done" headingColor="text-emerald-200" cards={cards} setCards={setCards} />
+    <div className="flex flex-col">
+      <div className="flex h-full w-full gap-3  overflow-hidden p-5">
+        <Column title="Backlog" column="backlog" headingColor="text-neutral-500" cards={cards} setCards={setCards} />
+        <Column title="TODO" column="todo" headingColor="text-yellow-200" cards={cards} setCards={setCards} />
+        <Column title="In progress" column="doing" headingColor="text-blue-200" cards={cards} setCards={setCards} />
+        <Column title="Complete" column="done" headingColor="text-emerald-200" cards={cards} setCards={setCards} />
+      </div>
       <BurnBarrel setCards={setCards} />
     </div>
   );
@@ -220,7 +222,7 @@ const BurnBarrel = ({ setCards }: BurnBarrelProps) => {
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      className={`mt-10 grid h-56 w-56 shrink-0 place-content-center rounded border text-3xl ${
+      className={`m-5 grid h-56 w-[50%] shrink-0 place-content-center rounded border text-3xl ${
         active
           ? "border-red-800 bg-red-800/20 text-red-500"
           : "border-neutral-500 bg-neutral-500/20 text-neutral-500"
