@@ -4,6 +4,11 @@
 
 FutureOS is a fully interactive, futuristic operating system that runs entirely in your browser. Designed to look and feel like a next-gen OS.
 
+See live: https://lumin-os.vercel.app/
+
+Username: admin
+
+Password: admin
   
 
 ##  🚀 Features
