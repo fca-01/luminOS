@@ -157,9 +157,6 @@ function Neofetch(){
 
   return (
     <div className="flex bg-text text-text font-mono p-4 w-full gap-5">
-      <div className="text-center font-mono text-text w-60 h-fit">
-
-      </div>
       <div className="text-center flex flex-col items-start justify-center font-mono">
         {neofetch.map((item) => (
           <DisplayInfo title={item.label} value={item.value} key={item.label} />

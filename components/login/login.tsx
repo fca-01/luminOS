@@ -79,7 +79,7 @@ export default function Login() {
                 <FormItem>
                   <Title>Username</Title>
                   <FormControl>
-                    <Input placeholder="João Silva" className="rounded-none"{...field}/>
+                    <Input placeholder="John" className="rounded-none"{...field}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
